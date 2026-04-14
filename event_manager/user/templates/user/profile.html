@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile | Campus Event Portal</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            background: #fff;
+            padding: 40px;
+            width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .info {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #444;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #111;
+        }
+
+        .btn {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background: #ff5e62;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .btn:hover {
+            background: #e14b50;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>👤 My Profile</h2>
+
+    <div class="info">
+        <span class="label">Username:</span>
+        {{ request.user.username }}
+    </div>
+
+    <div class="info">
+        <span class="label">Full Name:</span>
+        {{ request.user.first_name }}
+    </div>
+
+    <div class="info">
+        <span class="label">Email:</span>
+        {{ request.user.email }}
+    </div>
+
+    <div class="info">
+        <span class="label">Role:</span>
+        {{ request.user.role }}
+    </div>
+
+    <a href="{% url 'logout' %}" class="btn">Logout</a>
+
+</div>
+
+</body>
+</html>

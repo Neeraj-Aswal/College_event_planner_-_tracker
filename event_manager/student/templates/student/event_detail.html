@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Details</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9966, #ff5e62);
+            color: white;
+        }
+
+        .navbar {
+            background: rgba(0,0,0,0.2);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+
+        .container {
+            padding: 50px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .card {
+            background: white;
+            color: black;
+            width: 60%;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .title {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .info {
+            font-size: 15px;
+            margin: 8px 0;
+            color: #444;
+        }
+
+        .desc {
+            margin-top: 15px;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 20px;
+            background: #ff5e62;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #e14b50;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 15px;
+            color: #555;
+            text-decoration: none;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h2>🎉 Event Details</h2>
+    <div>
+        <a href="{% url 'student_events' %}">Events</a>
+        <a href="{% url 'student_dashboard' %}">Dashboard</a>
+        <a href="{% url 'profile' %}">Profile</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+    <div class="card">
+
+        <div class="title">
+            {{ event.title }}
+        </div>
+
+        <div class="info">
+            📅 Date: {{ event.date }}
+        </div>
+
+        <div class="info">
+            📍 Location: {{ event.location }}
+        </div>
+
+        <div class="info">
+            👤 Organizer: {{ event.created_by.username }}
+        </div>
+
+        <div class="info">
+        👥 Participants: {{ event.total_participants }}
+        </div>
+
+        <div class="desc">
+            {{ event.description }}
+        </div>
+
+        <form method="POST" action="{% url 'join_event' event.id %}">
+           {% csrf_token %}
+           <button type="submit">Join Event</button>
+        </form>
+
+        <br>
+
+        <a href="{% url 'student_events' %}" class="back">
+            ← Back to Events
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Events</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #43cea2, #185a9d);
+            color: white;
+        }
+
+        .navbar {
+            background: rgba(0,0,0,0.2);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+
+        .container {
+            padding: 40px;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        .event-card {
+            background: white;
+            color: black;
+            width: 60%;
+            margin: 15px auto;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            text-align: left;
+            transition: transform 0.2s;
+        }
+
+        .event-card:hover {
+            transform: scale(1.02);
+        }
+
+        .event-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .event-info {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 15px;
+            background: #185a9d;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #124a7a;
+        }
+
+        .empty {
+            margin-top: 50px;
+            font-size: 18px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h2>📅 Events</h2>
+    <div>
+        <a href="{% url 'student_dashboard' %}">Dashboard</a>
+        <a href="{% url 'profile' %}">Profile</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+    <div class="title">All Upcoming Events 🎉</div>
+
+    {% if events %}
+
+        {% for event in events %}
+            <div class="event-card">
+                
+                <div class="event-title">
+                    {{ event.title }}
+                </div>
+
+                <div class="event-info">
+                    📅 Date: {{ event.date }} <br>
+                    📍 Location: {{ event.location }}
+                    👥 Participants: {{ event.total_participants }}
+                </div>
+
+                <p>{{ event.description|truncatechars:100 }}</p>
+
+                <a href="{% url 'event_detail' event.id %}" class="btn">
+                    View Details
+                </a>
+
+            </div>
+        {% endfor %}
+
+    {% else %}
+        <div class="empty">
+            No events available right now 😢
+        </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register | Campus Event Portal</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9966, #ff5e62);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            background: #fff;
+            padding: 40px;
+            width: 380px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        p {
+            color: #777;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .input-group {
+            text-align: left;
+            margin-bottom: 12px;
+        }
+
+        label {
+            font-size: 14px;
+            color: #444;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        input:focus, select:focus {
+            border-color: #ff5e62;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #ff5e62;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: #e14b50;
+        }
+
+        .extra {
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
+        .extra a {
+            color: #ff5e62;
+            text-decoration: none;
+        }
+
+        .extra a:hover {
+            text-decoration: underline;
+        }
+
+        .msg {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>🎓 Create Account</h2>
+    <p>Register for Campus Event Portal</p>
+
+    <!-- 🔥 Django Messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="msg">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- 🔐 Register Form -->
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="input-group">
+            <label>Full Name</label>
+            <input type="text" name="full_name" placeholder="Enter your name" required>
+        </div>
+
+        <div class="input-group">
+            <label>User ID</label>
+            <input type="text" name="user_id" placeholder="Create a User ID" required>
+        </div>
+
+        <div class="input-group">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Enter your email" required>
+        </div>
+
+        <!-- 🔥 ROLE FIELD (IMPORTANT FOR YOUR PROJECT) -->
+        <div class="input-group">
+            <label>Register As</label>
+            <select name="role" required>
+                <option value="">Select Role</option>
+                <option value="student">Student</option>
+                <option value="organizer">Organizer</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" name="password1" placeholder="Create password" required>
+        </div>
+
+        <div class="input-group">
+            <label>Confirm Password</label>
+            <input type="password" name="password2" placeholder="Confirm password" required>
+        </div>
+
+        <button type="submit" class="btn">Register</button>
+    </form>
+
+    <div class="extra">
+        Already have an account?
+        <a href="{% url 'login' %}">Login here</a>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .navbar {
+            background: rgba(0,0,0,0.2);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h2 {
+            margin: 0;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+
+        .container {
+            padding: 50px;
+            text-align: center;
+        }
+
+        .card {
+            background: white;
+            color: black;
+            padding: 30px;
+            margin: 20px auto;
+            width: 60%;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #4a5bdc;
+        }
+
+        .welcome {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .role {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h2>🎓 Student Panel</h2>
+    <div>
+        <a href="{% url 'student_events' %}">Events</a>
+        <a href="{% url 'profile' %}">Profile</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+    <div class="welcome">
+        Welcome, {{ request.user.first_name }}
+    </div>
+
+    <div class="role">
+        Role: {{ request.user.role }}
+    </div>
+
+    <div class="card">
+        <h2>📅 Explore Events</h2>
+        <p>View all upcoming college events and participate easily.</p>
+        <a href="{% url 'student_events' %}" class="btn">View Events</a>
+    </div>
+
+    <div class="card">
+        <h2>👤 Your Profile</h2>
+        <p>Check your personal details and account information.</p>
+        <a href="{% url 'profile' %}" class="btn">View Profile</a>
+    </div>
+
+</div>
+
+</body>
+</html>

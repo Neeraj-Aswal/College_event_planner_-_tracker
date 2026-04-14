@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Event</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #8360c3, #2ebf91);
+            color: white;
+        }
+
+        .navbar {
+            background: rgba(0,0,0,0.3);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            padding: 50px;
+        }
+
+        .form-box {
+            background: white;
+            color: black;
+            padding: 30px;
+            width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #2ebf91;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #2ebf91;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #249c7a;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #555;
+            text-decoration: none;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h2>🎉 Create Event</h2>
+    <div>
+        <a href="{% url 'organizer_dashboard' %}">Dashboard</a>
+        <a href="{% url 'my_events' %}">My Events</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</div>
+
+<!-- FORM -->
+<div class="container">
+
+    <div class="form-box">
+
+        <h2>➕ Add New Event</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label>Event Title</label>
+            <input type="text" name="title" required>
+
+            <label>Description</label>
+            <textarea name="description" required></textarea>
+
+            <label>Date</label>
+            <input type="date" name="date" required>
+
+            <label>Location</label>
+            <input type="text" name="location" required>
+
+            <button type="submit" class="btn">Create Event</button>
+        </form>
+
+        <a href="{% url 'organizer_dashboard' %}" class="back">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

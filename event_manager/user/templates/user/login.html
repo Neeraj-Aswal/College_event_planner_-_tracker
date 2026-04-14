@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Campus Event Portal</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #43cea2, #185a9d);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            background: #fff;
+            padding: 40px;
+            width: 350px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        p {
+            color: #777;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .input-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 14px;
+            color: #444;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #185a9d;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #185a9d;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #124a7a;
+        }
+
+        .extra {
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
+        .extra a {
+            color: #185a9d;
+            text-decoration: none;
+        }
+
+        .extra a:hover {
+            text-decoration: underline;
+        }
+
+        .msg {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>🎓 Campus Login</h2>
+    <p>Login with your User ID</p>
+
+    <!-- 🔥 Django Messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="msg">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- 🔐 Login Form -->
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="input-group">
+            <label>User ID</label>
+            <input type="text" name="user_id" placeholder="Enter your User ID" required>
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter your password" required>
+        </div>
+
+        <button type="submit" class="btn">Login</button>
+    </form>
+
+    <div class="extra">
+        New user?
+        <a href="{% url 'register' %}">Register here</a>
+    </div>
+
+</div>
+
+</body>
+</html>
